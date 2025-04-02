@@ -57,6 +57,10 @@ type Request struct {
 	// the last request for the entity.
 	// Optional. If not set, return the first page for this entity.
 	Cursor string
+
+	// Adding config as it's being passed in the example request "config": "e30=",
+	Config *Config
+
 }
 
 // SCAFFOLDING #6 - pkg/adapter/client.go: Add/Remove/Update any fields to model the response from the SoR API.
@@ -76,4 +80,5 @@ type Response struct {
 	// page.
 	// May be empty.
 	NextCursor string
+
 }

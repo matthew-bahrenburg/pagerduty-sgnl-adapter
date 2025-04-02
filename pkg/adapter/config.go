@@ -26,9 +26,7 @@ type Config struct {
 	// Every field MUST have a `json` tag.
 
 	// Example config field.
-	//APIVersion string `json:"apiVersion,omitempty"`
-	//Authorization string `json:http_authorization,omitempty"`
-	//Address string `json:address,omitempty"`
+	// APIVersion string `json:"apiVersion,omitempty"`
 }
 
 // ValidateConfig validates that a Config received in a GetPage call is valid.
@@ -38,12 +36,8 @@ func (c *Config) Validate(_ context.Context) error {
 	switch {
 	case c == nil:
 		return errors.New("request contains no config")
-	case c.Authorization == "" || c.Authorization == nil:
-		return errors.New("PagerDuty auth is missing required token.")
-	case c.Address == "" || c.Address == nil:
-		return errors.New("PagerDuty address is missing required url.")
-	//case c.APIVersion == "":
-	//	return errors.New("apiVersion is not set")
+	// case c.APIVersion == "":
+	// 	return errors.New("apiVersion is not set")
 	default:
 		return nil
 	}
