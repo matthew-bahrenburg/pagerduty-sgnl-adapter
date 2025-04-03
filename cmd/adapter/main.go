@@ -23,7 +23,7 @@ import (
 
 	api_adapter_v1 "github.com/sgnl-ai/adapter-framework/api/adapter/v1"
 	"github.com/sgnl-ai/adapter-framework/server"
-	"github.com/sgnl-ai/adapter-template/pkg/adapter"
+	"github.com/matthew-bahrenburg/pagerduty-sgnl-adapter/pkg/adapter"
 	"google.golang.org/grpc"
 )
 
