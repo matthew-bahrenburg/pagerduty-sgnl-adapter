@@ -1,6 +1,6 @@
 # PagerDuty SGNL Adapter
 
-The SGNL Adapter used for collecting PagerDuty Teams data: https://api.pagerduty.com/teams
+SGNL Adapter used for collecting PagerDuty Teams data: https://api.pagerduty.com/teams
 
 ## To Run
 
