@@ -26,6 +26,7 @@ type Config struct {
 	// Every field MUST have a `json` tag.
 
 	// Example config field.
+	// Commenting out as we do not need API version, but leaving example in case needed for future edits.
 	// APIVersion string `json:"apiVersion,omitempty"`
 }
 
@@ -36,7 +37,8 @@ func (c *Config) Validate(_ context.Context) error {
 	switch {
 	case c == nil:
 		return errors.New("request contains no config")
-	// case c.APIVersion == "":
+	// Commenting out as we do not need API version, but leaving example in case needed for future edits.
+		// case c.APIVersion == "":
 	// 	return errors.New("apiVersion is not set")
 	default:
 		return nil

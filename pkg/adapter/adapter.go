@@ -68,7 +68,7 @@ func (a *Adapter) RequestPageFromDatasource(
 	req := &Request{
 		BaseURL: request.Address,
 
-		//Commenting out as basic auth is not used
+		//Commenting out basic auth as it's not used
 		// Basic Auth
 		// Username: request.Auth.Basic.Username,
 		// Password: request.Auth.Basic.Password,

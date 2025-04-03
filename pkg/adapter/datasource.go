@@ -16,7 +16,6 @@ package adapter
 
 import (
 	"context"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -54,6 +53,7 @@ type DatasourceResponse struct {
 	// SCAFFOLDING #13  - pkg/adapter/datasource.go: Add or remove fields in the response as necessary. This is used to unmarshal the response from the SoR.
 
 	// SCAFFOLDING #14 - pkg/adapter/datasource.go: Update `objects` with field name in the SoR response that contains the list of objects.
+	// Adding teams declaration, as well as more and offset for pagination
 	Teams []map[string]any `json:"teams,omitempty"`
 	More bool `json:"more,omitempty"`
 	Offset int `json:"offset,omitempty"`
@@ -87,7 +87,8 @@ func (d *Datasource) GetPage(ctx context.Context, request *Request) (*Response, 
 	// Populate the request with the appropriate path, headers, and query parameters to query the
 	// datasource.
 
-	//Pagesize is a required adapter input so I can assume its not null / set to 0
+	// Pagesize is a required adapter input so I can assume its not null / set to 0
+	// If curser is not empty, add offset parameter to next cursor / page number
 	var url = ""
 	if request.Cursor == "" {
 		url = fmt.Sprintf("%s/%s?limit=%d", request.BaseURL, Teams, request.PageSize)
@@ -113,12 +114,8 @@ func (d *Datasource) GetPage(ctx context.Context, request *Request) (*Response, 
 	// Add headers to the request, if any.
 	// req.Header.Add("Accept", "application/json")
 
-	if request.Token == "" {
-		// Basic Authentication
-		auth := request.Username + ":" + request.Password
-		req.Header.Add("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(auth)))
-	} else {
-		// Auth Token for Bearer Credentials flow
+	if request.Token != "" {
+		// Setting additional pager duty headers
 		req.Header.Add("Authorization", request.Token)
 		req.Header.Add("Accept", "application/vnd.pagerduty+json;version=2")
 		req.Header.Add("Content-Type", "application/json")
@@ -180,6 +177,8 @@ func ParseResponse(body []byte) (objects []map[string]any, nextCursor string, er
 	// SCAFFOLDING #19 - pkg/adapter/datasource.go: Populate next page information (called cursor in SGNL adapters).
 	// Populate nextCursor with the cursor returned from the datasource, if present.
 
+	// If response has "more" value set to true, there are more pages to request. Setting nextCursor to current page + 1 to paginate to next page. 
+	// Else, returning empty string indicating no more pages
 	if data.More {
 		nextCursor = strconv.Itoa(data.Offset + 1)
 	}else{
