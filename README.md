@@ -5,7 +5,7 @@ The SGNL Adapter used for collecting PagerDuty Teams data: https://api.pagerduty
 ## To Run
 
 - Clone this code repo: `git clone https://github.com/matthew-bahrenburg/pagerduty-sgnl-adapter` 
-- Chane into the new directory: `cd pagerduty-sgnl-adapter`
+- Change into the new directory: `cd pagerduty-sgnl-adapter`
 - Create a JSON file (for example, authTokens.json) that will contain the tokens used to authenticate requests to the adapter. The tokens must be stored in the following format and note down the path of the file. Auth tokens can be generated using `openssl rand 64 | openssl enc -base64 -A`
    ```
    ["<token1>", "<token2>", ...]
