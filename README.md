@@ -1,4 +1,4 @@
-# Pager Duty SGNL Adapter
+# PagerDuty SGNL Adapter
 
 The SGNL Adapter used for collecting PagerDuty Teams data: https://api.pagerduty.com/teams
 
