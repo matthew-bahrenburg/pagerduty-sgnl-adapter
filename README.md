@@ -10,7 +10,7 @@ The SGNL Adapter used for collecting PagerDuty Teams data: https://api.pagerduty
    ```
    ["<token1>", "<token2>", ...]
    ```
-- Get the path to the authtokens.json file by running: `ls `pwd`/authTokens.json`
+- Get the path to the authtokens.json file by running: ```ls `pwd`/authTokens.json```
 - Set environment variable AUTH_TOKENS_PATH `export AUTH_TOKENS_PATH=<PATH TO authtokens.json file>`
 - In the pagerduty-sgnl-adapter directory, execute the following command to start the adapter running locally on port 8080 `go run cmd/adapter/main.go`
 
